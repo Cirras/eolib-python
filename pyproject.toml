@@ -1,0 +1,91 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "eolib"
+dynamic = ["version"]
+description = 'Core library for writing applications related to Endless Online.'
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+keywords = ["endless-online"]
+authors = [
+  { name = "Jonah Jeleniewski", email = "cirrasbu@hotmail.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+  "Topic :: Games/Entertainment",
+]
+dependencies = []
+
+[project.urls]
+Documentation = "https://github.com/Cirras/eolib#readme"
+Issues = "https://github.com/Cirras/eolib/issues"
+Source = "https://github.com/Cirras/eolib"
+
+[tool.hatch.version]
+path = "src/eolib/__about__.py"
+
+[tool.hatch.build.hooks.custom]
+path = "generate_protocol_code.py"
+
+[tool.hatch.build]
+artifacts = [
+  "src/eolib/protocol/_generated",
+]
+
+[tool.hatch.envs.default]
+dependencies = [
+  "coverage[toml]>=6.5",
+  "pytest",
+]
+[tool.hatch.envs.default.scripts]
+test = [
+  "coverage run -m pytest --no-header -v {args:tests}",
+  "- coverage combine",
+  "coverage xml",
+]
+
+[[tool.hatch.envs.all.matrix]]
+python = ["3.8", "3.9", "3.10", "3.11", "3.12"]
+
+[tool.hatch.envs.lint]
+detached = true
+dependencies = [
+  "black>=23.1.0",
+  "mypy>=1.0.0",
+]
+[tool.hatch.envs.lint.scripts]
+format = "black {args:.}"
+style = "black --check --diff {args:.}"
+typing = "mypy --install-types --non-interactive {args:src}"
+all = [
+  "style",
+  "typing",
+]
+
+[tool.black]
+target-version = ["py37"]
+line-length = 100
+skip-string-normalization = true
+
+[tool.coverage.run]
+source_pkgs = ["eolib"]
+branch = true
+parallel = true
+omit = [
+  "src/eolib/__about__.py",
+]
+
+[tool.coverage.paths]
+eolib = ["src/eolib"]
+tests = ["tests"]
