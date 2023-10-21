@@ -229,4 +229,4 @@ class EoWriter:
         Returns:
             bytearray: The encoded string.
         """
-        return bytearray(string.encode('windows-1252', 'replace'))
+        return bytearray(string, 'windows-1252', 'replace')
