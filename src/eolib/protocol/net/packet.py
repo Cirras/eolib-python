@@ -1,7 +1,8 @@
 from abc import ABC, abstractmethod
 
 from eolib.data.eo_writer import EoWriter
-from eolib.protocol.net import PacketFamily, PacketAction
+from eolib.protocol._generated.net.packet_family import PacketFamily
+from eolib.protocol._generated.net.packet_action import PacketAction
 
 
 class Packet(ABC):

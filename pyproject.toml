@@ -36,7 +36,7 @@ Source = "https://github.com/Cirras/eolib"
 path = "src/eolib/__about__.py"
 
 [tool.hatch.build.hooks.custom]
-path = "generate_protocol_code.py"
+path = "protocol_build_hook.py"
 
 [tool.hatch.build]
 artifacts = [
@@ -50,6 +50,7 @@ dependencies = [
 ]
 [tool.hatch.envs.default.scripts]
 test = [
+  "python protocol.py generate",
   "coverage run -m pytest --no-header -v {args:tests}",
   "- coverage combine",
   "coverage xml",
@@ -67,7 +68,10 @@ dependencies = [
 [tool.hatch.envs.lint.scripts]
 format = "black {args:.}"
 style = "black --check --diff {args:.}"
-typing = "mypy --install-types --non-interactive {args:src}"
+typing = [
+  "python protocol.py generate",
+  "mypy --install-types --non-interactive {args:src}"
+]
 all = [
   "style",
   "typing",
