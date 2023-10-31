@@ -50,3 +50,6 @@ Utilities:
 | `hatch run lint:style`  | Check formatting using `black`                         |
 | `hatch run lint:typing` | Check typing using `mypy`                              |
 | `hatch run lint:all`    | Check formatting using `black` and typing using `mypy` |
+| `hatch run docs:build`  | Build documentation using `mkdocs`                     |
+| `hatch run docs:serve`  | Build and serve documentation using `mkdocs`           |
+| `hatch run docs:deploy` | Build and deploy documentation using `mkdocs` & `mike` |

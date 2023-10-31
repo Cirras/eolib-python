@@ -77,6 +77,33 @@ all = [
   "typing",
 ]
 
+[tool.hatch.envs.docs]
+detached = true
+dependencies = [
+  "mike",
+  "mkdocs",
+  "mkdocs-material",
+  "mkdocs-gen-files",
+  "mkdocs-section-index",
+  "mkdocs-literate-nav",
+  "mkdocstrings[python]",
+  "mkdocs-include-markdown-plugin",
+]
+
+[tool.hatch.envs.docs.scripts]
+build = [
+  "python protocol.py generate",
+  "mkdocs build"
+]
+serve = [
+  "python protocol.py generate",
+  "mkdocs serve"
+]
+deploy = [
+  "python protocol.py generate",
+  "mike deploy --update-aliases {args:DEV} latest"
+]
+
 [tool.black]
 target-version = ["py37"]
 line-length = 100
