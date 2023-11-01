@@ -1,3 +1,10 @@
+"""	
+EO protocol data structures.
+
+See Also:
+  - [eolib.protocol._generated][]
+"""
+
 from .serialization_error import *
 
 from .map import *

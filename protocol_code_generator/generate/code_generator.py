@@ -121,11 +121,31 @@ class ProtocolCodeGenerator:
 
             generated_init.add_import("*", absolute_package_path)
 
-        path = os.path.relpath(protocol_file.path, self._input_root)
-        path = os.path.join(os.path.dirname(path), "__init__.py")
+        relative_path = Path(os.path.relpath(protocol_file.path, self._input_root)).as_posix()
+        path = os.path.join(os.path.dirname(relative_path), "__init__.py")
         path = Path(path).as_posix()
 
-        generated_init_file = PythonFile(path, generated_init)
+        eo_protocol_url = "https://github.com/cirras/eo-protocol/tree/master/xml/" + relative_path
+
+        public_package = os.path.join("eolib/protocol", relative_path)
+        public_package = os.path.dirname(public_package)
+        public_package = '.'.join(Path(public_package).parts)
+
+        docstring = (
+            CodeBlock()
+            .add_line('"""')
+            .add_line(
+                'Data structures generated from the '
+                + f'[eo-protocol]({eo_protocol_url}){{target="_blank"}} XML specification.'
+            )
+            .add_line()
+            .add_line('Warning:')
+            .add_line('  - This subpackage should not be directly imported. ')
+            .add_line(f'  - Instead, import [{public_package}][] (or the top-level `eolib`).')
+            .add_line('"""')
+        )
+
+        generated_init_file = PythonFile(path, generated_init, module_docstring=docstring)
         generated_init_file.write(self._output_root)
 
     def _generate_enum(self, protocol_enum):
