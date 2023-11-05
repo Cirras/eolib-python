@@ -2,6 +2,7 @@
 
 [![PyPI - Version](https://img.shields.io/pypi/v/eolib.svg)](https://pypi.org/project/eolib)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/eolib.svg)](https://pypi.org/project/eolib)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Cirras_eolib-python&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Cirras_eolib-python)
 
 A core Python library for writing applications related to Endless Online.
 
