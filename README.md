@@ -43,15 +43,16 @@ Utilities:
 
 ### Available Commands
 
-| Command                 | Description                                            |
-| ----------------------- | ------------------------------------------------------ |
-| `hatch build`           | Build package                                          |
-| `hatch clean`           | Remove build artifacts                                 |
-| `hatch run test`        | Run unit tests with coverage                           |
-| `hatch run lint:format` | Format source files using `black`                      |
-| `hatch run lint:style`  | Check formatting using `black`                         |
-| `hatch run lint:typing` | Check typing using `mypy`                              |
-| `hatch run lint:all`    | Check formatting using `black` and typing using `mypy` |
-| `hatch run docs:build`  | Build documentation using `mkdocs`                     |
-| `hatch run docs:serve`  | Build and serve documentation using `mkdocs`           |
-| `hatch run docs:deploy` | Build and deploy documentation using `mkdocs` & `mike` |
+| Command                     | Description                                            |
+| --------------------------- | ------------------------------------------------------ |
+| `hatch build`               | Build package                                          |
+| `hatch clean`               | Remove build artifacts                                 |
+| `hatch run test`            | Run unit tests with coverage                           |
+| `hatch run lint:format`     | Format source files using `black`                      |
+| `hatch run lint:style`      | Check formatting using `black`                         |
+| `hatch run lint:typing`     | Check typing using `mypy`                              |
+| `hatch run lint:all`        | Check formatting using `black` and typing using `mypy` |
+| `hatch run docs:build`      | Build documentation using `mkdocs`                     |
+| `hatch run docs:serve`      | Build and serve documentation using `mkdocs`           |
+| `hatch run docs:deploy`     | Build and deploy documentation using `mkdocs` & `mike` |
+| `hatch run prepare:release` | Prepare and tag a new release                          |

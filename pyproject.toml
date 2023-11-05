@@ -104,6 +104,17 @@ deploy = [
   "mike deploy --update-aliases {args:DEV} latest"
 ]
 
+[tool.hatch.envs.release]
+detached = true
+dependencies = [
+  "keepachangelog==1.0.0",
+]
+
+[tool.hatch.envs.release.scripts]
+prepare = [
+  "python prepare_release.py {args}" 
+]
+
 [tool.black]
 target-version = ["py37"]
 line-length = 100
