@@ -124,6 +124,7 @@ skip-string-normalization = true
 source_pkgs = ["eolib"]
 branch = true
 parallel = true
+relative_files = true
 omit = [
   "src/eolib/__about__.py",
 ]
