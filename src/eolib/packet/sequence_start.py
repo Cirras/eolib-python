@@ -93,7 +93,7 @@ class InitSequenceStart(SimpleSequenceStart):
     @property
     def seq1(self) -> int:
         """
-        Returns the `seq1` byte value sent with the INIT_INIT server packet.
+        Returns the `seq1` byte value sent with the `INIT_INIT` server packet.
 
         Returns:
             int: The seq1 byte value.
@@ -103,7 +103,7 @@ class InitSequenceStart(SimpleSequenceStart):
     @property
     def seq2(self) -> int:
         """
-        Returns the `seq2` byte value sent with the INIT_INIT server packet.
+        Returns the `seq2` byte value sent with the `INIT_INIT` server packet.
 
         Returns:
             int: The seq2 byte value.
@@ -170,7 +170,7 @@ class PingSequenceStart(SimpleSequenceStart):
     @property
     def seq2(self) -> int:
         """
-        Returns the seq2 char value sent with the CONNECTION_PLAYER server packet.
+        Returns the seq2 char value sent with the `CONNECTION_PLAYER` server packet.
 
         Returns:
             int: The seq2 char value.
