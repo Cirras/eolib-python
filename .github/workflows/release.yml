@@ -46,6 +46,9 @@ jobs:
     needs: publish-pypi
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+
     steps:
       - uses: actions/checkout@v3
         with:
