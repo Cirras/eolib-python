@@ -1,3 +1,4 @@
+from collections import namedtuple
 from protocol_code_generator.generate.code_block import CodeBlock
 from protocol_code_generator.generate.object_code_generator import FieldData
 from protocol_code_generator.type.basic_type import BasicType
@@ -12,6 +13,19 @@ from protocol_code_generator.type.string_type import StringType
 from protocol_code_generator.type.struct_type import StructType
 from protocol_code_generator.util.docstring_utils import generate_docstring
 from protocol_code_generator.util.number_utils import try_parse_int
+
+DeprecatedField = namedtuple(
+    "DeprecatedField", ["type_name", "old_field_name", "new_field_name", "since"]
+)
+
+DEPRECATED_FIELDS = [DeprecatedField("WalkPlayerServerPacket", "Direction", "direction", "1.1.0")]
+
+
+def get_deprecated_field(type_name, field_name):
+    for field in DEPRECATED_FIELDS:
+        if field.type_name == type_name and field.new_field_name == field_name:
+            return field
+    return None
 
 
 class FieldCodeGenerator:
@@ -232,6 +246,43 @@ class FieldCodeGenerator:
 
             setter.unindent()
             self._data.add_method(setter)
+
+        deprecated = get_deprecated_field(self._data.class_name, self._name)
+        if deprecated is not None:
+            old_name = deprecated.old_field_name
+            deprecated_docstring = (
+                CodeBlock()
+                .add_line('"""')
+                .add_line('!!! warning "Deprecated"')
+                .add_line()
+                .add_line(f"    Use `{self._name}` instead. (Deprecated since v{deprecated.since})")
+                .add_line('"""')
+            )
+            deprecation_warning = (
+                f"'{self._data.class_name}.{deprecated.old_field_name}' is deprecated as of "
+                f"{deprecated.since}, use '{self._name}' instead."
+            )
+            self._data.add_method(
+                CodeBlock()
+                .add_line('@property')
+                .add_line(f'def {old_name}(self) -> {python_type_name}:')
+                .indent()
+                .add_code_block(deprecated_docstring)
+                .add_line(f'warn("{deprecation_warning}", DeprecationWarning, stacklevel=2)')
+                .add_line(f'return self.{self._name}')
+                .unindent()
+                .add_import("warn", "warnings")
+            )
+            if self._hardcoded_value is None:
+                self._data.add_method(
+                    CodeBlock()
+                    .add_line(f'@{old_name}.setter')
+                    .add_line(f'def {old_name}(self, {self._name}: {python_type_name}) -> None:')
+                    .indent()
+                    .add_code_block(deprecated_docstring)
+                    .add_line(f'self.{self._name} = {self._name}')
+                    .unindent()
+                )
 
     def generate_serialize(self):
         self._generate_serialize_missing_optional_guard()

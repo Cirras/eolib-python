@@ -7,10 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `WalkPlayerServerPacket.direction` field.
+
 ### Changed
 
 - Remove trailing break from `ArenaSpecServerPacket`.
 - Remove trailing break from `ArenaAcceptServerPacket`.
+- Deprecate `WalkPlayerServerPacket.Direction` field.
 
 ## [1.0.0] - 2023-11-07
 

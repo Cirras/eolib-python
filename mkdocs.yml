@@ -54,4 +54,5 @@ plugins:
           summary: true
           filters: ["!^_[^_]", "!^__repr__$", "!^__all__$"]
 markdown_extensions:
+  - admonition
   - attr_list
