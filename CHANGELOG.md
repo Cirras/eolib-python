@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2023-12-19
+
 ### Added
 
 - `WalkPlayerServerPacket.direction` field.
@@ -37,5 +39,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Data encryption
   - Packet sequencer
 
-[Unreleased]: https://github.com/cirras/eolib-python/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/cirras/eolib-python/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/cirras/eolib-python/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/cirras/eolib-python/releases/tag/v1.0.0
