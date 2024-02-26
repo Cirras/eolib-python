@@ -275,6 +275,10 @@ class ProtocolCodeGenerator:
             .unindent()
         )
 
+        object_code_generator.data.docstring.add_code_block(
+            generate_docstring(get_comment(protocol_packet))
+        )
+
         code_block = object_code_generator.code
         code_block.add_import("Packet", "eolib.protocol.net.packet")
         code_block.add_import("PacketFamily", "eolib.protocol._generated.net.packet_family")
