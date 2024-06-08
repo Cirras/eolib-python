@@ -28,9 +28,9 @@ classifiers = [
 dependencies = []
 
 [project.urls]
-Documentation = "https://github.com/Cirras/eolib#readme"
-Issues = "https://github.com/Cirras/eolib/issues"
-Source = "https://github.com/Cirras/eolib"
+Documentation = "https://github.com/Cirras/eolib-python#readme"
+Issues = "https://github.com/Cirras/eolib-python/issues"
+Source = "https://github.com/Cirras/eolib-python"
 
 [tool.hatch.version]
 path = "src/eolib/__about__.py"
