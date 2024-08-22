@@ -55,4 +55,4 @@ Utilities:
 | `hatch run docs:build`      | Build documentation using `mkdocs`                     |
 | `hatch run docs:serve`      | Build and serve documentation using `mkdocs`           |
 | `hatch run docs:deploy`     | Build and deploy documentation using `mkdocs` & `mike` |
-| `hatch run prepare:release` | Prepare and tag a new release                          |
+| `hatch run release:prepare` | Prepare and tag a new release                          |
