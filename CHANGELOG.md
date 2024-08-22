@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- The package is now [PEP 561](https://peps.python.org/pep-0561/) compatible, exposing type
+  information for usage in type checkers like
+  [mypy](https://mypy.readthedocs.io/en/stable/index.html).
+
 ## [1.1.0] - 2023-12-19
 
 ### Added
