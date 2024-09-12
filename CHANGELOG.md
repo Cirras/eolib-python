@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Incorrect (de)serialization of data structures containing both `<dummy>` and `<field>` elements.'
+  (Only `ChestCloseServerPacket` was impacted.)
+
 ## [1.1.1] - 2024-08-22
 
 ### Changed

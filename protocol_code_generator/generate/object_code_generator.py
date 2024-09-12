@@ -287,7 +287,7 @@ class ObjectCodeGenerator:
             .build()
         )
 
-        needs_if_guards = not self._data.serialize and not self._data.deserialize
+        needs_if_guards = not self._data.serialize.empty or not self._data.deserialize.empty
 
         if needs_if_guards:
             self._data.serialize.begin_control_flow("if len(writer) == old_writer_length")
