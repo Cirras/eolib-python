@@ -273,7 +273,7 @@ class TypeFactory:
                 result = dummy_type.bounded
 
         return result
-    
+
     @staticmethod
     def _flatten_instruction(instruction, result):
         result.append(instruction)
