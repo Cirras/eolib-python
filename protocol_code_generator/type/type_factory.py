@@ -273,6 +273,19 @@ class TypeFactory:
                 result = dummy_type.bounded
 
         return result
+    
+    @staticmethod
+    def _flatten_instruction(instruction, result):
+        result.append(instruction)
+
+        if instruction.tag == "chunked":
+            for chunked_instruction in get_instructions(instruction):
+                TypeFactory._flatten_instruction(chunked_instruction, result)
+        elif instruction.tag == "switch":
+            protocol_cases = instruction.findall("case")
+            for protocol_case in protocol_cases:
+                for case_instruction in get_instructions(protocol_case):
+                    TypeFactory._flatten_instruction(case_instruction, result)
 
     @staticmethod
     def _flatten_instructions(element, result=None):
@@ -280,16 +293,7 @@ class TypeFactory:
             result = []
 
         for instruction in get_instructions(element):
-            result.append(instruction)
-
-            if instruction.tag == "chunked":
-                for chunked_instruction in get_instructions(instruction):
-                    TypeFactory._flatten_instructions(chunked_instruction, result)
-            elif instruction.tag == "switch":
-                protocol_cases = instruction.findall("case")
-                for protocol_case in protocol_cases:
-                    for case_instruction in get_instructions(protocol_case):
-                        TypeFactory._flatten_instructions(case_instruction, result)
+            TypeFactory._flatten_instruction(instruction, result)
 
         return result
 
