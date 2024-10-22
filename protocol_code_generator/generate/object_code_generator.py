@@ -156,7 +156,12 @@ class ObjectCodeGenerator:
         if self._context.needs_old_writer_length_variable:
             result.add_line('old_writer_length: int = len(writer)')
 
+        result.add_line('old_string_sanitization_mode: bool = writer.string_sanitization_mode')
+        result.begin_control_flow('try')
         result.add_code_block(self._data.serialize)
+        result.next_control_flow('finally')
+        result.add_line('writer.string_sanitization_mode = old_string_sanitization_mode')
+        result.unindent()
         result.unindent()
         result.add_import('EoWriter', 'eolib.data.eo_writer')
 
@@ -346,6 +351,7 @@ class ObjectCodeGenerator:
         if not was_already_enabled:
             self._context.chunked_reading_enabled = True
             self._data.deserialize.add_line("reader.chunked_reading_mode = True")
+            self._data.serialize.add_line("writer.string_sanitization_mode = True")
 
         for instruction in protocol_chunked:
             self.generate_instruction(instruction)
@@ -353,6 +359,7 @@ class ObjectCodeGenerator:
         if not was_already_enabled:
             self._context.chunked_reading_enabled = False
             self._data.deserialize.add_line("reader.chunked_reading_mode = False")
+            self._data.serialize.add_line("writer.string_sanitization_mode = False")
 
     def _generate_break(self):
         if not self._context.chunked_reading_enabled:
