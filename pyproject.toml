@@ -28,7 +28,7 @@ classifiers = [
 dependencies = []
 
 [project.urls]
-Documentation = "https://github.com/Cirras/eolib-python#readme"
+Documentation = "https://cirras.github.io/eolib-python"
 Issues = "https://github.com/Cirras/eolib-python/issues"
 Source = "https://github.com/Cirras/eolib-python"
 
