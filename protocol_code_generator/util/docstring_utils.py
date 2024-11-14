@@ -7,7 +7,7 @@ def generate_docstring(protocol_comment, notes=[]):
     lines = []
 
     if protocol_comment:
-        lines.extend(map(str.strip, escape(protocol_comment).split('\n')))
+        lines.extend(map(str.strip, escape(protocol_comment, quote=False).split('\n')))
 
     if notes:
         if lines:
