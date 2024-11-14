@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Generated code now sets `EoWriter.string_sanitization_mode` during serialization.
   - For more information, see
     [Chunked Reading: Sanitization](https://github.com/Cirras/eo-protocol/blob/master/docs/chunks.md#sanitization).
+- Escaped character references appearing in docstrings and downstream generated documentation.
 
 ## [1.1.1] - 2024-08-22
 

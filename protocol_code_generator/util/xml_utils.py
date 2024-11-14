@@ -1,4 +1,5 @@
 from xml.etree.ElementTree import Element
+from html import unescape
 
 
 def get_instructions(element):
@@ -32,7 +33,7 @@ def get_text(element):
                 raise RuntimeError(f'Unexpected text content "{text}"')
             result = text
 
-    return result if result else None
+    return unescape(result) if result else None
 
 
 def get_string_attribute(element, name, default_value=None):
