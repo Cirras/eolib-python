@@ -8,9 +8,7 @@ class ProtocolEnumMeta(EnumMeta):
                 value, names=names, module=module, qualname=qualname, type=type, start=start
             )
         try:
-            return super().__call__(
-                value, names=names, module=module, qualname=qualname, type=type, start=start
-            )
+            return super().__call__(value, module=module, qualname=qualname, type=type, start=start)
         except ValueError:
             unrecognized = int.__new__(cls, value)
             unrecognized._name_ = f"Unrecognized({int(value)})"
