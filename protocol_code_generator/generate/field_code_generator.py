@@ -100,9 +100,6 @@ class FieldCodeGenerator:
             if self._delimited:
                 raise RuntimeError("Only arrays can be delimited.")
 
-        if not self._delimited and self._trailing_delimiter:
-            raise RuntimeError("Only delimited arrays can have a trailing delimiter.")
-
     def _validate_length_field(self):
         if self._length_field:
             if self._name is None:

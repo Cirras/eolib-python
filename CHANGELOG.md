@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Incorrect (de)serialization of some data structures containing arrays with trailing delimiters.
 - Incorrect (de)serialization of data structures containing both `<dummy>` and `<field>` elements.'
   (Only `ChestCloseServerPacket` was impacted.)
 - Sanitize strings within chunked sections of protocol data structures.

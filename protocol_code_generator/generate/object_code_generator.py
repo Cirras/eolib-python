@@ -250,7 +250,7 @@ class ObjectCodeGenerator:
             .comment(get_comment(protocol_array))
             .array_field(True)
             .delimited(delimited)
-            .trailing_delimiter(get_boolean_attribute(protocol_array, "trailing-delimiter"))
+            .trailing_delimiter(get_boolean_attribute(protocol_array, "trailing-delimiter", True))
             .build()
         )
 
